@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : JohnnyLi
+  @group             : 
+  @last modified on  : 2021-07-14
+  @last modified by  : JohnnyLi
+  Modifications Log 
+  Ver   Date         Author     Modification
+  1.0   2021-06-02   JohnnyLi   Initial Version
+-->
+<template>
+    <p>hello child</p>
+    <lightning-card title="name List" icon-name="custom:custom14">
+        <ul class="slds-m-around_medium">
+            <template for:each={nameListInChild} for:item='name' for:index='index'>
+                <li class="slds-m-vertical_medium" key={name} id={index}>
+                    hello, {name}, {index}
+                    <lightning-button key={index} data-id={index} label="remove" 
+                        onclick={removeElement}></lightning-button>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

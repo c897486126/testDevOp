@@ -1,0 +1,66 @@
+<!--
+  @description       : 
+  @author            : JohnnyLi
+  @group             : 
+  @last modified on  : 2021-07-16
+  @last modified by  : JohnnyLi
+  Modifications Log 
+  Ver   Date         Author     Modification
+  1.0   2021-06-02   JohnnyLi   Initial Version
+-->
+<template>
+    <lightning-card title="acc list" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+        <template if:true={accList.data}>
+            
+                <template for:each={accList.data} for:item="acc">
+                    <!-- lwc中field name必须是第一个字母大写，后面小写才可以 -->
+                    <p key={acc.Id}>{acc.Name}</p>
+                </template>
+            
+        </template>
+        <template if:true={accList.error}>
+            <p>{accList.error}</p>
+        </template>
+    </div>
+    </lightning-card>
+    <h2>hello parent</h2>
+    <lightning-card title="HelloConditionalRendering" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <template if:true={areDetailsVisible}>
+                <div class="slds-m-vertical_medium">
+                    hello, {name}
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+    <lightning-card  title="Name List In Parent">
+        <lightning-button label="add" slot="actions" onclick={handleClick}></lightning-button>
+        <lightning-input
+        label='name'
+        value={name}
+        onchange={handleNameChange}
+        ></lightning-input>
+        <p class="slds-p-horizontal_small">Card Body (custom component)</p>
+        <template iterator:it={nameListInParent}>
+            <li key={it.value}>{it.value}</li>
+        </template>
+        <p slot="footer">Card Footer</p>
+    </lightning-card>
+    
+    <lightning-card  title="Name List In Child">
+    <lightning-input
+    label='name2'
+    value={name}
+    onchange={handleNameChange}
+    ></lightning-input>
+    <lightning-button label="toggle child" onclick={toggleIsShowChild1}></lightning-button>
+    <!-- nameListInChild 需要改为 name-list-in-child -->
+    <template if:true={isShowChild}>
+        <c-myt-Child
+            name-list-in-child={nameListInParent}
+            onremoveelement={removeElement}
+        ></c-myt-Child>
+    </template>
+</lightning-card>
+</template>

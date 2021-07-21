@@ -1,0 +1,53 @@
+<!--
+  @description       : 
+  @author            : JohnnyLi
+  @group             : 
+  @last modified on  : 2021-07-13
+  @last modified by  : JohnnyLi
+  Modifications Log 
+  Ver   Date         Author     Modification
+  1.0   2021-06-14   JohnnyLi   Initial Version
+-->
+<template>
+    <lightning-card title="Controls" icon-name="action:upload">
+        <lightning-layout>
+          <lightning-layout-item flexibility="auto" padding="around-small">
+            <lightning-button
+              label="Subtract"
+              icon-name="utility:dash"
+              onclick={handleSubtract}>
+            </lightning-button>
+          </lightning-layout-item>
+          <lightning-layout-item flexibility="auto" padding="around-small" onbuttonclick={handleMultiply}>
+              <template for:each={factors} for:item="factor">
+                <c-button
+                  key={factor}
+                  label={factor}
+                  data-factor={factor}
+                  icon="utility:close"
+                  >
+                </c-button>
+              </template>
+          </lightning-layout-item>
+          <lightning-layout-item flexibility="auto" padding="around-small" onbuttonclick={handleDivide}>
+              <template for:each={factors} for:item="factor">
+                <c-button
+                  key={factor}
+                  label={factor}
+                  data-factor={factor}
+                  icon="utility:italic"
+                  >
+                </c-button>
+              </template>
+          </lightning-layout-item>
+          <lightning-layout-item flexibility="auto" padding="around-small">
+            <lightning-button
+              label="Add"
+              icon-name="utility:add"
+              onclick={handleAdd}
+              icon-position="right">
+            </lightning-button>
+          </lightning-layout-item>
+        </lightning-layout>
+      </lightning-card>
+</template>
